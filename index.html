@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec4 vPosition;
+        attribute vec3 vNormal;
+
+        varying vec4 fColor;
+
+        uniform mat4 projectionMatrix;
+        uniform mat4 modelViewMatrix;
+
+        uniform vec4 lightPosition;
+        uniform vec4 lightAmbient;
+        uniform vec4 lightDiffuse;
+        uniform vec4 lightSpecular;
+        uniform float shininess;
+        
+        uniform vec4 color;
+        uniform bool isWireframe;
+
+        void main() {
+            if (isWireframe) {
+                fColor = color;
+            } else {
+                vec4 ambientProduct = 
+                vec4(   lightAmbient.x * color.x, lightAmbient.y * color.y,
+                lightAmbient.z * color.z, lightAmbient.w * color.w
+                );
+                
+                vec4 diffuseProduct = 
+                vec4(   lightDiffuse.x * color.x, lightDiffuse.y * color.y,
+                lightDiffuse.z * color.z, lightDiffuse.w * color.w
+                );
+                
+                vec4 specularProduct = 
+                vec4(   lightSpecular.x * color.x, lightSpecular.y * color.y,
+                lightSpecular.z * color.z, lightSpecular.w * color.w
+                );
+
+                vec3 pos = -(modelViewMatrix * vPosition).xyz;
+    
+                //fixed light postion
+                
+                vec3 light = lightPosition.xyz;
+                vec3 L = normalize( light - pos );
+
+                
+                vec3 E = normalize( -pos );
+                vec3 H = normalize( L + E );
+                
+                vec4 NN = vec4(vNormal,0);
+
+                // Transform vertex normal into eye coordinates
+                
+                vec3 N = normalize( (modelViewMatrix*NN).xyz);
+
+                // Compute terms in the illumination equation
+                vec4 ambient = ambientProduct;
+
+                float Kd = max( dot(L, N), 0.0 );
+                vec4  diffuse = Kd*diffuseProduct;
+
+                float Ks = pow( max(dot(N, H), 0.0), shininess );
+                vec4  specular = Ks * specularProduct;
+                
+                if( dot(L, N) < 0.0 ) {
+                specular = vec4(0.0, 0.0, 0.0, 1.0);
+                } 
+
+                fColor = ambient + diffuse +specular;
+                
+                fColor.a = 1.0;
+            }
+            
+            gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+        }
+        
+        </script>
+
+        <script id="fragment-shader" type="x-shader/x-fragment">
+        precision mediump float;
+        varying vec4 fColor;
+
+        void main() {
+            gl_FragColor = fColor;
+        }
+        </script>
+
+        <script type="text/javascript" src="src/webgl-utils.js"></script>
+        <script type="text/javascript" src="src/initShaders.js"></script>
+        <script type="text/javascript" src="src/MV.js"></script>
+
+        <script type="text/javascript" src="src/objects/entities/fg_entity.js"></script>
+        <script type="text/javascript" src="src/objects/entities/fg_testEntity.js"></script>
+        <script type="text/javascript" src="src/objects/entities/fg_watertank.js"></script>
+
+        <script type="text/javascript" src="src/objects/utils/fg_utils.js"></script>
+        <script type="text/javascript" src="src/objects/utils/fg_graphicsmodel.js"></script>
+
+        <script type="text/javascript" src="src/objects/drawables/fg_graphicsobject.js"></script>
+        <script type="text/javascript" src="src/objects/drawables/fg_quad.js"></script>
+        <script type="text/javascript" src="src/objects/drawables/fg_fin.js"></script>
+        <script type="text/javascript" src="src/objects/drawables/fg_fish.js"></script>
+        <script type="text/javascript" src="src/objects/entities/fg_model_fish.js"></script>
+        <script type="text/javascript" src="src/objects/drawables/fg_container.js"></script>
+
+        <script type="text/javascript" src="src/flock.js"></script>
+
+        <script type="text/javascript" src="src/mouseHandlers.js"></script>
+		<script type="text/javascript" src="src/main.js"></script>
+
+    </head>
+
+	<body>
+        <canvas id="gl-canvas" width="800" height="600">
+            Sorry, your browser does not support HTML5's canvas element.
+        </canvas>
+    </body>
+    
+   <style>
+       body {
+           display: flex;
+           justify-content: center;
+           align-items: center;
+
+           margin: 0;
+           height: 100vh;       
+           background-color: black;
+
+           overflow: hidden;
+       }
+   </style> 
+</html>
