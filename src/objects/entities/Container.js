@@ -19,3 +19,7 @@ Container.prototype.newTrimino = function() {
 Container.prototype.checkEvents = function() {
     
 }
+
+Container.prototype.canMove = function (x, y, z) {
+    
+}

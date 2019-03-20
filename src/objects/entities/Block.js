@@ -18,3 +18,8 @@ Block.prototype.calcLocation = function() {
 Block.prototype.move = function(x, y, z) {
 
 }
+
+// Athugar hvort blokk geti fært isg
+Block.prototype.canMove = function () {
+    
+}
