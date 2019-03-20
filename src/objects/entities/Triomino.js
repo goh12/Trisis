@@ -1,5 +1,5 @@
 function Triomino() {
-    this.kubbar = [];
+    this.kubbar = createArray(3);
 
 }
 
@@ -38,6 +38,6 @@ Triomino.prototype.moveZ = function() {
 }
 
 
-Triomino.prototype.modeDown = function() {
+Triomino.prototype.moveDown = function() {
     
 }
