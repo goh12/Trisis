@@ -1,0 +1,31 @@
+
+
+function Container() {
+    this.type = FG_GraphicsObject.prototype.type.WIREFRAME;
+    this.getShaderVariableLocations();
+    
+    this.color = vec4(0.5, 0.5, 0.5, 0.1);
+    this.isWireframe = 1;
+    this.setupBuffer(Container.prototype.wireframe);
+}
+
+const __containerVertices = [];
+for(let y = 0; y <= 20; y++) {
+    for (let i = 0; i <= 6; i++) {
+        __containerVertices.push(vec3(0.0, y, i));
+        __containerVertices.push(vec3(6.0, y, i));
+        __containerVertices.push(vec3(i, y, 0.0));
+        __containerVertices.push(vec3(i, y, 6.0))
+    }
+}
+
+for(let i = 0; i <= 6; i++) {
+    for(let j = 0; j <= 6; j++) {
+        __containerVertices.push(vec3(i, 0.0, j));
+        __containerVertices.push(vec3(i, 20.0, j));
+    }
+}
+
+Container.prototype = new FG_GraphicsObject();
+
+Container.prototype.wireframe = __containerVertices;
