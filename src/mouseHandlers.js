@@ -38,7 +38,7 @@ function fg_attachMouseHandlers(canvas, initX, initY, speed, initZView) {
         if( e.wheelDelta > 0.0 ) {
             zView += 2;
         } else {
-            zView -= 2;
+            zView = Math.max(2, zView - 2);
         }
         e.preventDefault();
         e.returnValue = false;

@@ -1,12 +1,12 @@
 
 
-function Container() {
+function G_Container() {
     this.type = FG_GraphicsObject.prototype.type.WIREFRAME;
     this.getShaderVariableLocations();
     
     this.color = vec4(0.5, 0.5, 0.5, 0.1);
     this.isWireframe = 1;
-    this.setupBuffer(Container.prototype.wireframe);
+    this.setupBuffer(G_Container.prototype.wireframe);
 }
 
 const __containerVertices = [];
@@ -26,6 +26,6 @@ for(let i = 0; i <= 6; i++) {
     }
 }
 
-Container.prototype = new FG_GraphicsObject();
+G_Container.prototype = new FG_GraphicsObject();
 
-Container.prototype.wireframe = __containerVertices;
+G_Container.prototype.wireframe = __containerVertices;

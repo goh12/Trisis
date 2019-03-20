@@ -75,6 +75,24 @@
             
             gl_Position = projectionMatrix * modelViewMatrix * vPosition;
         }
+        </script>
+
+        <script id="vertex-shader-wireframe" type="x-shader/x-vertex">
+            attribute vec4 vPosition;
+    
+            varying vec4 fColor;
+    
+            uniform mat4 projectionMatrix;
+            uniform mat4 modelViewMatrix;
+            uniform vec4 color;
+    
+            void main() {
+                fColor = color;
+                
+                gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+            }
+            
+            </script>
         
         </script>
 
@@ -91,20 +109,15 @@
         <script type="text/javascript" src="src/initShaders.js"></script>
         <script type="text/javascript" src="src/MV.js"></script>
 
-        <script type="text/javascript" src="src/objects/entities/fg_entity.js"></script>
-        <script type="text/javascript" src="src/objects/entities/fg_testEntity.js"></script>
-        <script type="text/javascript" src="src/objects/entities/fg_watertank.js"></script>
-
         <script type="text/javascript" src="src/objects/utils/utils.js"></script>
 
         <script type="text/javascript" src="src/objects/drawables/fg_graphicsobject.js"></script>
-        <script type="text/javascript" src="src/objects/drawables/fg_quad.js"></script>
-        <script type="text/javascript" src="src/objects/drawables/fg_fin.js"></script>
-        <script type="text/javascript" src="src/objects/drawables/fg_fish.js"></script>
-        <script type="text/javascript" src="src/objects/entities/fg_model_fish.js"></script>
-        <script type="text/javascript" src="src/objects/drawables/fg_container.js"></script>
+        <script type="text/javascript" src="src/objects/drawables/g_Block.js"></script>
+        <script type="text/javascript" src="src/objects/drawables/g_container.js"></script>
 
-        <script type="text/javascript" src="src/flock.js"></script>
+        <script type="text/javascript" src="src/objects/entities/Block.js"></script>
+        <script type="text/javascript" src="src/objects/entities/Container.js"></script>
+
 
         <script type="text/javascript" src="src/mouseHandlers.js"></script>
 		<script type="text/javascript" src="src/main.js"></script>

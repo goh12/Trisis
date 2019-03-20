@@ -78,7 +78,7 @@ FG_GraphicsObject.prototype.prepare = function() {
  */
 FG_GraphicsObject.prototype.draw = function(transform, owner) {
     GL.uniformMatrix4fv(this.modelViewMatrixLoc, false, flatten(transform));
-    color = owner.color || this.color;
+    const color = owner.color || this.color;
     GL.uniform4fv(this.colorLoc, flatten(color));
     GL.uniform1i(this.isWireframeLoc, this.isWireframe);
     if(this.type === FG_GraphicsObject.prototype.type.ARRAY_BUFFER) {
