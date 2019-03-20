@@ -49,7 +49,7 @@ function init() {
     GL.frontFace(GL.CCW);
     GL.enable(GL.BLEND);
 
-    //CONTAINER = new Container();
+    CONTAINER = new Container();
 
     fg_attachMouseHandlers(canvas, 0, 0, 1, 40);
     render(0);
@@ -69,8 +69,8 @@ function render(delta) {
 
     const MV = mult(rotateX(spinX), rotateY(spinY));
     
-    //CONTAINER.prepare();
-    //CONTAINER.draw(MV, {});
+    CONTAINER.prepare();
+    CONTAINER.draw(MV, {});
 
     requestAnimationFrame(render);
 }
