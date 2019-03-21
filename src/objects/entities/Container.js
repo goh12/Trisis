@@ -3,13 +3,12 @@ function Container() {
     this.staticBlocks = [];
     this.movingTriomino = null;
 
-
-    for (let i = 0; i < 2; i ++) {
-        const cellX = Math.floor(Math.random() * 6);
-        const cellY = Math.floor(Math.random() * 20);
-        const cellZ = Math.floor(Math.random() * 6);
-
-        this.staticBlocks.push(new Block(cellX, cellY, cellZ));
+    for(let y = 0; y < 20; y++) {
+        for(let z = 0; z < 6; z++) {
+            for(let x = 0; x < 6; x++) {
+                this.staticBlocks.push(new Block(x, y, z));
+            }
+        }
     }
 
     this.color = vec4(1.0, 1.0, 1.0, 1.0);
@@ -21,15 +20,13 @@ Container.prototype.update = function() {
     if (this.movingTriomino === null) {
         this.newTriomino();
     }
-    
 }
 
-Container.prototype.render = function(MV) {
-    this.drawable.prepare();
-    this.drawable.draw(MV, this);
+Container.prototype.render = function(projectionMatrix, MV) {
+    this.drawable.draw(projectionMatrix, MV, this);
 
     for(let i = 0; i < this.staticBlocks.length; i++) {
-        this.staticBlocks[i].render(MV);
+        this.staticBlocks[i].render(projectionMatrix, MV);
     }
 }
 

@@ -17,79 +17,74 @@
         uniform float shininess;
         
         uniform vec4 color;
-        uniform bool isWireframe;
 
         void main() {
-            if (isWireframe) {
-                fColor = color;
-            } else {
-                vec4 ambientProduct = 
-                vec4(   lightAmbient.x * color.x, lightAmbient.y * color.y,
-                lightAmbient.z * color.z, lightAmbient.w * color.w
-                );
-                
-                vec4 diffuseProduct = 
-                vec4(   lightDiffuse.x * color.x, lightDiffuse.y * color.y,
-                lightDiffuse.z * color.z, lightDiffuse.w * color.w
-                );
-                
-                vec4 specularProduct = 
-                vec4(   lightSpecular.x * color.x, lightSpecular.y * color.y,
-                lightSpecular.z * color.z, lightSpecular.w * color.w
-                );
+            vec4 ambientProduct = 
+            vec4(   lightAmbient.x * color.x, lightAmbient.y * color.y,
+            lightAmbient.z * color.z, lightAmbient.w * color.w
+            );
+            
+            vec4 diffuseProduct = 
+            vec4(   lightDiffuse.x * color.x, lightDiffuse.y * color.y,
+            lightDiffuse.z * color.z, lightDiffuse.w * color.w
+            );
+            
+            vec4 specularProduct = 
+            vec4(   lightSpecular.x * color.x, lightSpecular.y * color.y,
+            lightSpecular.z * color.z, lightSpecular.w * color.w
+            );
 
-                vec3 pos = -(modelViewMatrix * vPosition).xyz;
-    
-                //fixed light postion
-                
-                vec3 light = lightPosition.xyz;
-                vec3 L = normalize( light - pos );
+            vec3 pos = -(modelViewMatrix * vPosition).xyz;
 
-                
-                vec3 E = normalize( -pos );
-                vec3 H = normalize( L + E );
-                
-                vec4 NN = vec4(vNormal,0);
+            //fixed light postion
+            
+            vec3 light = lightPosition.xyz;
+            vec3 L = normalize( light - pos );
 
-                // Transform vertex normal into eye coordinates
-                
-                vec3 N = normalize( (modelViewMatrix*NN).xyz);
+            
+            vec3 E = normalize( -pos );
+            vec3 H = normalize( L + E );
+            
+            vec4 NN = vec4(vNormal,0);
 
-                // Compute terms in the illumination equation
-                vec4 ambient = ambientProduct;
+            // Transform vertex normal into eye coordinates
+            
+            vec3 N = normalize( (modelViewMatrix*NN).xyz);
 
-                float Kd = max( dot(L, N), 0.0 );
-                vec4  diffuse = Kd*diffuseProduct;
+            // Compute terms in the illumination equation
+            vec4 ambient = ambientProduct;
 
-                float Ks = pow( max(dot(N, H), 0.0), shininess );
-                vec4  specular = Ks * specularProduct;
-                
-                if( dot(L, N) < 0.0 ) {
-                specular = vec4(0.0, 0.0, 0.0, 1.0);
-                } 
+            float Kd = max( dot(L, N), 0.0 );
+            vec4  diffuse = Kd*diffuseProduct;
 
-                fColor = ambient + diffuse +specular;
-                
-                fColor.a = 1.0;
-            }
+            float Ks = pow( max(dot(N, H), 0.0), shininess );
+            vec4  specular = Ks * specularProduct;
+            
+            if( dot(L, N) < 0.0 ) {
+            specular = vec4(0.0, 0.0, 0.0, 1.0);
+            } 
+
+            fColor = ambient + diffuse +specular;
+            
+            fColor.a = 1.0;
             
             gl_Position = projectionMatrix * modelViewMatrix * vPosition;
         }
         </script>
 
         <script id="vertex-shader-wireframe" type="x-shader/x-vertex">
-            attribute vec4 vPosition;
+            attribute vec4 vPosition2;
     
             varying vec4 fColor;
     
-            uniform mat4 projectionMatrix;
-            uniform mat4 modelViewMatrix;
-            uniform vec4 color;
+            uniform mat4 projectionMatrix2;
+            uniform mat4 modelViewMatrix2;
+            uniform vec4 color2;
     
             void main() {
-                fColor = color;
+                fColor = color2;
                 
-                gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+                gl_Position = projectionMatrix2 * modelViewMatrix2 * vPosition2;
             }
             
             </script>

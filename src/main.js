@@ -1,6 +1,9 @@
 ﻿let GL = null;
 let PROGRAM = null;
+let PROGRAM_WIREFRAME = null;
 let canvas = null;
+
+let DeltaTime = 0;
 
 let watertank = null;
 let flock = null;
@@ -9,7 +12,7 @@ let projectionMatrixLoc = null;
 projectionMatrix = null;
 
 let lightPosition = vec4(50.0, 50.0, -10.0, 0.0 );
-let lightAmbient = vec4(0.5, 0.5, 0.5, 1.0 );
+let lightAmbient = vec4(0.7, 0.7, 0.7, 1.0 );
 let lightDiffuse = vec4( 1.0, 1.0, 1.0, 1.0 );
 let lightSpecular = vec4( 1.0, 1.0, 1.0, 1.0 );
 
@@ -27,9 +30,9 @@ function init() {
     }
     
     PROGRAM = initShaders(GL, "vertex-shader", "fragment-shader");
+    PROGRAM_WIREFRAME = initShaders(GL, "vertex-shader-wireframe", "fragment-shader");
     GL.useProgram(PROGRAM);
 
-    projectionMatrixLoc = GL.getUniformLocation(PROGRAM, "projectionMatrix");
     GL.uniform4fv(GL.getUniformLocation(PROGRAM, "lightAmbient"), 
         flatten(lightAmbient));
     GL.uniform4fv(GL.getUniformLocation(PROGRAM, "lightDiffuse"), 
@@ -40,7 +43,6 @@ function init() {
         flatten(lightPosition));
     GL.uniform1f(GL.getUniformLocation(PROGRAM, "shininess"), 
         shininess);
-
     
     GL.viewport(0, 0, canvas.width, canvas.height);
     GL.clearColor(0.1, 0.1, 0.1, 1.0);
@@ -53,27 +55,28 @@ function init() {
     CONTAINER = new Container();
     //testSuite = new TestSuite();
     
-    fg_attachMouseHandlers(canvas, 0, 0, 1, 30);
+    fg_attachMouseHandlers(canvas, 0, 0, 20, 30);
     render(0);
 }
 
 let time = 0;
 function render(delta) {
-    //console.log(delta - time);
+    DeltaTime = (delta - time)/1000;
     time = delta;
+    //console.log(DeltaTime);
 
     GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
     
     const PROJECTION = perspective(60, 4/3, 0.1, 500.0);
-    const CAMERA = lookAt(vec3(3, 20.0, zView), vec3(3.0, 6.0, 3.0), vec3(0.0, 1.0, 0.0));
-    projectionMatrix = mult(PROJECTION, CAMERA);
+    const CAMERA = lookAt(vec3(0, 0.0, zView), vec3(0.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0));
+    const projectionMatrix = mult(PROJECTION, CAMERA);
     GL.uniformMatrix4fv(projectionMatrixLoc, false, flatten(projectionMatrix));
 
-    const MV = mult(rotateX(spinX), rotateY(spinY));
+    let MV = mult(rotateX(spinX), rotateY(spinY));
+    MV = mult(MV, translate(-3.0, -10, -3,0));
     
-    CONTAINER.render(MV);
+    CONTAINER.render(projectionMatrix, MV);
     //testSuite.render(MV);
-
 
     requestAnimationFrame(render);
 }

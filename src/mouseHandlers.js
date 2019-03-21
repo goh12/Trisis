@@ -27,8 +27,8 @@ function fg_attachMouseHandlers(canvas, initX, initY, speed, initZView) {
     
     canvas.addEventListener("mousemove", function(e){
         if(movement) {
-            spinY = ( spinY + rotateSpeed * (e.clientX - origX) ) % 360;
-            spinX = ( spinX + rotateSpeed * (e.clientY - origY) ) % 360;
+            spinY =  (spinY + DeltaTime * rotateSpeed * (e.clientX - origX) ) % 360;
+            spinX =  (spinX + DeltaTime * rotateSpeed * (e.clientY - origY) ) % 360;
             origX = e.clientX;
             origY = e.clientY;
         }
@@ -36,9 +36,9 @@ function fg_attachMouseHandlers(canvas, initX, initY, speed, initZView) {
 
     window.addEventListener("mousewheel", function(e){
         if( e.wheelDelta > 0.0 ) {
-            zView += 2;
+            zView += DeltaTime * 80;
         } else {
-            zView = Math.max(2, zView - 2);
+            zView = Math.max(2, zView - DeltaTime * 80);
         }
         e.preventDefault();
         e.returnValue = false;

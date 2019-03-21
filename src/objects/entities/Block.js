@@ -24,10 +24,9 @@ Block.prototype.calcLocation = function() {
     );
 }
 
-Block.prototype.render = function(MV) {
+Block.prototype.render = function(projectionMatrix, MV) {
     MV = mult(MV, translate(this.calcLocation()));
-    this.drawable.prepare();
-    this.drawable.draw(MV, this);
+    this.drawable.draw(projectionMatrix, MV, this);
 }
 
 //Færir blokk um x, y, z
