@@ -63,7 +63,7 @@ let time = 0;
 function render(delta) {
     DeltaTime = (delta - time)/1000;
     time = delta;
-    console.log(DeltaTime);
+    //console.log(DeltaTime);
 
     GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
     

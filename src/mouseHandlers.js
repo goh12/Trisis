@@ -34,8 +34,8 @@ function fg_attachMouseHandlers(canvas, initX, initY, speed, initZView) {
         }
     });
 
-    window.addEventListener("mousewheel", function(e){
-        if( e.wheelDelta > 0.0 ) {
+    window.addEventListener("wheel", function(e){
+        if( e.deltaY > 0.0 ) {
             zView += DeltaTime * 80;
         } else {
             zView = Math.max(2, zView - DeltaTime * 80);
