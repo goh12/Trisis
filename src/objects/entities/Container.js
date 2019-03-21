@@ -3,12 +3,11 @@ function Container() {
     this.staticBlocks = [];
     this.movingTriomino = null;
 
-    for(let y = 0; y < 20; y++) {
-        for(let z = 0; z < 6; z++) {
-            for(let x = 0; x < 6; x++) {
-                this.staticBlocks.push(new Block(x, y, z));
-            }
-        }
+    for(let y = 0; y < 50; y++) {
+        const xCell = Math.floor(Math.random() * 6);
+        const yCell = Math.floor(Math.random() * 20);
+        const zCell = Math.floor(Math.random() * 6);
+        this.staticBlocks.push(new Block(xCell, yCell, zCell));
     }
 
     this.color = vec4(1.0, 1.0, 1.0, 1.0);

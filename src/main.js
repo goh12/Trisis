@@ -11,8 +11,8 @@ let flock = null;
 let projectionMatrixLoc = null;
 projectionMatrix = null;
 
-let lightPosition = vec4(50.0, 50.0, -10.0, 0.0 );
-let lightAmbient = vec4(0.7, 0.7, 0.7, 1.0 );
+let lightPosition = vec4(-10, 30, 5, 0.0 );
+let lightAmbient = vec4(0.8, 0.8, 0.8, 1.0 );
 let lightDiffuse = vec4( 1.0, 1.0, 1.0, 1.0 );
 let lightSpecular = vec4( 1.0, 1.0, 1.0, 1.0 );
 
@@ -63,7 +63,7 @@ let time = 0;
 function render(delta) {
     DeltaTime = (delta - time)/1000;
     time = delta;
-    //console.log(DeltaTime);
+    console.log(DeltaTime);
 
     GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
     

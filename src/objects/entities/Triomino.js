@@ -1,6 +1,6 @@
 function Triomino() {
     this.kubbar = createArray(3);
-
+    
 }
 
 
