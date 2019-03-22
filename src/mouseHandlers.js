@@ -7,7 +7,7 @@ var rotateSpeed = 1.0;
 var zView = 0;
 
 
-function fg_attachMouseHandlers(canvas, initX, initY, speed, initZView) {
+function attachMouseHandlers(canvas, initX, initY, speed, initZView) {
     spinX = initX;
     spinY = initY;
     rotateSpeed = speed;

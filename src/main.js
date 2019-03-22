@@ -55,7 +55,8 @@ function init() {
     CONTAINER = new Container();
     //testSuite = new TestSuite();
     
-    fg_attachMouseHandlers(canvas, 0, 0, 20, 30);
+    attachMouseHandlers(canvas, 0, 0, 20, 30);
+    attachKeyboardHandlers()
     render(0);
 }
 
