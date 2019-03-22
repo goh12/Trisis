@@ -78,6 +78,9 @@ function render(delta) {
     CONTAINER.render(projectionMatrix, MV);
     //testSuite.render(MV);
 
+    // TODO: færa update úr render?
+    CONTAINER.update(DeltaTime);
+
     requestAnimationFrame(render);
 }
 

@@ -1,10 +1,10 @@
-function Block(x, y, z) {
+function Block(x, y, z, color) {
     this.xCell = x;
     this.yCell = y;
     this.zCell = z;
 
     this.drawable = G_Block.prototype.getDrawable();
-    this.color = vec4(Math.random(), Math.random(), Math.random(), 1);
+    this.color = color;
 }
 
 
@@ -34,11 +34,31 @@ Block.prototype.move = function(x, y, z) {
 
 }
 
-// Athugar hvort blokk geti fært isg
+// Athugar hvort blokk geti fært sig
 Block.prototype.canMove = function () {
     
+    const cellBelow = CONTAINER.cells[this.xCell][this.yCell-1][this.zCell];
+    
+    return cellBelow !== 1;
 }
 
+Block.prototype.lowerYCell = function () {
+    this.yCell--;
+}
+
+Block.prototype.getXCell = function () {
+    return this.xCell;
+}
+
+Block.prototype.getYCell = function () {
+    return this.yCell;
+}
+
+Block.prototype.getZCell = function () {
+    return this.zCell;
+}
+
+// TODO: taka út testsuite fyrir production
 function TestSuite() {
     this.block = new Block();
 }
