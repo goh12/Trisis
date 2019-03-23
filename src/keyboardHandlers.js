@@ -2,11 +2,17 @@ function attachKeyboardHandlers() {
     // Event listener for keyboard
     window.addEventListener("keydown", function(e){
         switch( e.keyCode ) {
+            case 37:    // vinstri ör
+                CONTAINER.movingTriomino.moveX(1);
+                break;
             case 38:	// upp ör
-                zView += 0.2;
+                CONTAINER.movingTriomino.moveZ(1);
+            break;
+            case 39:	// hægri ör
+                CONTAINER.movingTriomino.moveX(-1);
                 break;
             case 40:	// niður ör
-                zView -= 0.2;
+                CONTAINER.movingTriomino.moveZ(-1);
                 break;
             case 90:	// z 
                 break;
