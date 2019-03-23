@@ -2,6 +2,9 @@ function attachKeyboardHandlers() {
     // Event listener for keyboard
     window.addEventListener("keydown", function(e){
         switch( e.keyCode ) {
+            case 32:    // bilstöng
+                CONTAINER.movingTriomino.shootDown();
+                break;
             case 37:    // vinstri ör
                 CONTAINER.movingTriomino.moveX(1);
                 break;

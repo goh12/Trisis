@@ -4,6 +4,8 @@ function Triomino() {
     this.shouldMove = 1;
     this.xFlag = true;
 
+    this.fallSpeedMultiplier = 1;
+
     // miðju kubbur á random stað
     let xCell = Math.floor(Math.random() * 4) + 1;
     let yCell = 19; // TODO: á kubbur að birtast í hæð 19 ? 
@@ -25,7 +27,7 @@ function Triomino() {
 
 
 Triomino.prototype.update = function(DeltaTime) {
-    this.shouldMove -= DeltaTime; // should move verður < 0 á sek fresti
+    this.shouldMove -= DeltaTime * this.fallSpeedMultiplier; // should move verður < 0 á sek fresti
     
     if (this.shouldMove < 0 && this.canMoveDown()) {
         this.moveDown();
@@ -125,4 +127,8 @@ Triomino.prototype.moveDown = function() {
     for (let i = 0; i < this.kubbar.length; i++) {
         this.kubbar[i].move(0, 1, 0);
     }
+}
+
+Triomino.prototype.shootDown = function () {
+    this.fallSpeedMultiplier = 100;
 }

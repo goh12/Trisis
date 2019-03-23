@@ -56,7 +56,6 @@ Block.prototype.canMove = function (x, y, z) {
     }
 
 
-    
     return nextCell !== 1;
 }
 
