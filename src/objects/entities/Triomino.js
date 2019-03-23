@@ -2,6 +2,7 @@ function Triomino() {
     this.kubbar = createArray(3);
     this.color = vec4(Math.random(), Math.random(), Math.random(), 1);
     this.shouldMove = 1;
+    this.xFlag = true;
 
     // miðju kubbur á random stað
     let xCell = Math.floor(Math.random() * 4) + 1;
@@ -42,9 +43,16 @@ Triomino.prototype.render = function(projectionMatrix, MV) {
     }
 }
 
-
 Triomino.prototype.rotateX = function() {
-    
+    if (this.xFlag) {
+        this.kubbar[0].setCell(1, 0, 1);
+        this.kubbar[2].setCell(-1, 0, -1);
+        this.xFlag = false;        
+    } else {
+        this.kubbar[0].setCell(-1, 0, -1);
+        this.kubbar[2].setCell(1, 0, 1);
+        this.xFlag = true;        
+    }
 }
 
 

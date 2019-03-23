@@ -10,9 +10,9 @@ function Block(x, y, z, color) {
 
 
 Block.prototype.setCell = function(x, y, z) {
-    this.xCell = x;
-    this.yCell = y;
-    this.zCell = z;
+    this.xCell += x;
+    this.yCell += y;
+    this.zCell += z;
 }
 
 Block.prototype.calcLocation = function() {
@@ -44,15 +44,10 @@ Block.prototype.canMove = function (x, y, z) {
     // athugm hvort tilfærslur séu out of bounds
     if (x < 0 || z < 0) {
         if (this.xCell - x > 5 || this.yCell - y > 20 || this.zCell - z > 5) {
-            console.log("ho");
-            
             return false;
         }    
     } else if (x > 0 || z > 0) {
         if (this.xCell - x < 0 || this.yCell - y < 0 || this.zCell - z < 0) {
-            
-            console.log("hi");
-            
             return false;
         }
     } else {

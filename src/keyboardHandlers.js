@@ -14,11 +14,12 @@ function attachKeyboardHandlers() {
             case 40:	// niður ör
                 CONTAINER.movingTriomino.moveZ(-1);
                 break;
-            case 90:	// z 
+            case 90:	// z - snúa um x-ás
                 break;
             case 88:	// x 
                 break;
-            case 65:	// a 
+            case 65:	// a  - snúa um x-ás
+                CONTAINER.movingTriomino.rotateX();
                 break;
             case 83:	// s 
                 break;

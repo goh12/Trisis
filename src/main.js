@@ -20,6 +20,7 @@ let shininess = 80.0;
 
 let CONTAINER = null;
 let testSuite = null;
+let playerScore = 0;
 
 function init() {
     canvas = document.getElementById("gl-canvas");

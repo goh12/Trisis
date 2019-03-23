@@ -4,13 +4,6 @@ function Container() {
     this.staticBlocks = [];
     this.movingTriomino = null;
 
-        
-   /* for(let y = 0; y < 1; y++) {
-        const xCell = Math.floor(Math.random() * 6);
-        const yCell = Math.floor(Math.random() * 20);
-        const zCell = Math.floor(Math.random() * 6);
-        this.staticBlocks.push(new Block(xCell, yCell, zCell));
-    }*/
 
     this.drawable = new G_Container();
 }
@@ -22,6 +15,8 @@ Container.prototype.update = function(DeltaTime) {
     } else {
         this.movingTriomino.update(DeltaTime);
     }
+
+    this.checkFullPlane();
 }
 
 Container.prototype.render = function(projectionMatrix, MV) {
@@ -61,4 +56,45 @@ Container.prototype.checkEvents = function() {
 
 Container.prototype.canMove = function (x, y, z) {
     
+}
+
+Container.prototype.checkFullPlane = function () {
+
+    // TODO: láta kubba fyrir ofan detta niður
+    for (let y = 0; y < 20; y++) {
+        
+        let currHeight = 0;
+
+        for (let x = 0; x < 6; x++) {
+            
+            for (let z = 0; z < 6; z++) {
+                currHeight += this.cells[x][y][z];
+            }
+        }
+
+        if (currHeight === 36) {
+            this.updateScore(); // hækkum stig spilara
+
+            for (let x = 0; x < 6; x++) {
+                for (let z = 0; z < 6; z++) {
+                    this.cells[x][y][z] = 0; 
+                }
+            }
+
+            for (let i = this.staticBlocks.length - 1; i >= 0; i--) {
+                if (this.staticBlocks[i].yCell === y) {
+                    this.staticBlocks.splice(i, 1);
+                }                
+            }
+        }
+    }
+    
+}
+
+
+Container.prototype.updateScore = function () {
+    var score = document.getElementById('score');
+    let number = score.innerHTML;
+    number++;
+    score.innerHTML = number;
 }
