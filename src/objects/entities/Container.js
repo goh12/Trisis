@@ -46,7 +46,7 @@ Container.prototype.newTriomino = function(currTriominoBlocks) {
         }
     }
     
-    this.movingTriomino = new Triomino();
+    this.movingTriomino = new BentTriomino();
     
 }
 

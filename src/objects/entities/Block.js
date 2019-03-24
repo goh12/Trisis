@@ -47,11 +47,12 @@ Block.prototype.canMove = function (x, y, z) {
             return false;
         }    
     } else if (x > 0 || z > 0) {
-        if (this.xCell - x < 0 || this.yCell - y < 0 || this.zCell - z < 0) {
+        if (this.xCell - x < 0 || this.yCell + y < 0 || this.zCell - z < 0) {
             return false;
         }
+    } else if (this.yCell + y < 0) {
+        return false;
     } else {
-
         nextCell = CONTAINER.cells[this.xCell + x][this.yCell + y][this.zCell + z];
     }
 
@@ -71,6 +72,10 @@ Block.prototype.getZCell = function () {
     return this.zCell;
 }
 
+Block.prototype.getCells = function() {
+    return vec3(this.xCell, this.yCell, this.zCell);
+}
+ 
 // TODO: taka út testsuite fyrir production
 function TestSuite() {
     this.block = new Block();

@@ -1,4 +1,5 @@
 function Triomino() {
+    /*
     this.kubbar = createArray(3);
     this.color = vec4(Math.random(), Math.random(), Math.random(), 1);
     this.shouldMove = 1;
@@ -22,7 +23,7 @@ function Triomino() {
         xCell = i === 0 ? this.kubbar[1].getXCell() - 1 : this.kubbar[1].getXCell() + 1;
         this.kubbar[i] = (new Block(xCell, yCell, zCell, this.color));        
     }
-
+    */
 }
 
 
@@ -33,7 +34,6 @@ Triomino.prototype.update = function(DeltaTime) {
         this.moveDown();
         this.shouldMove = 1;
     }
-    
 }
 
 
@@ -114,7 +114,7 @@ Triomino.prototype.canMoveDown = function() {
                     && this.kubbar[2].canMove(0, -1, 0);
     
     // TODO: laga rotation skorðu
-    if (this.kubbar[1].getYCell() > 17 && allClear) {
+    if (this.kubbar[1].getYCell() > 0 && allClear) {
         return allClear;
     }
 

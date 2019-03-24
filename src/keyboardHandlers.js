@@ -18,17 +18,22 @@ function attachKeyboardHandlers() {
                 CONTAINER.movingTriomino.moveZ(-1);
                 break;
             case 90:	// z - snúa um x-ás
+                CONTAINER.movingTriomino.rotateX(false);
                 break;
-            case 88:	// x 
+            case 88:	// x
+                CONTAINER.movingTriomino.rotateY(false);
                 break;
             case 65:	// a  - snúa um x-ás
-                CONTAINER.movingTriomino.rotateX();
+                CONTAINER.movingTriomino.rotateX(true);
                 break;
             case 83:	// s 
+                CONTAINER.movingTriomino.rotateY(true);
                 break;
             case 81:	// q 
+                CONTAINER.movingTriomino.rotateZ(true);
                 break;
             case 87:	// w 
+                CONTAINER.movingTriomino.rotateZ(false);
                 break;
         }
     }  );  
