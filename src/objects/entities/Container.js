@@ -110,15 +110,20 @@ Container.prototype.checkFullPlane = function () {
         }
         
         // færum kubba fyrir ofan niður í cell fylki
-        if (shiftDownFlag && y + 1 < 19) {
-            for (let x = 0; x < 6; x++) {
-                for (let z = 0; z < 6; z++) {
-                    this.cells[x][y][z] = this.cells[x][y+1][z];
+        if (shiftDownFlag) {
+            for (let y2 = y; y2 < 20; y2++) {
+                if (y2 + 1 < 19) {
+                    for (let x = 0; x < 6; x++) {
+                        for (let z = 0; z < 6; z++) {
+                            this.cells[x][y2][z] = this.cells[x][y2+1][z];
+                        }
+                    }
                 }
             }
+            y--;
+            shiftDownFlag = false;
         }
     }
-    shiftDownFlag = false;
     
 }
 
