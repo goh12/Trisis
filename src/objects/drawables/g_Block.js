@@ -103,9 +103,9 @@ G_Block.prototype.indices = [
     16, 20, 21
 ];
 
-let quad_buffers = fg_unpackIndices(G_Block.prototype.indices, G_Block.prototype.vertices, false);
-G_Block.prototype.vArrayBuffer = quad_buffers.buffer;
-G_Block.prototype.normals = quad_buffers.normals;
+let block_buffers = fg_unpackIndices(G_Block.prototype.indices, G_Block.prototype.vertices, false);
+G_Block.prototype.vArrayBuffer = block_buffers.buffer;
+G_Block.prototype.normals = block_buffers.normals;
 
 G_Block.prototype.wireframe = [
     0, 1, 1, 2, 2, 3, 3, 0,

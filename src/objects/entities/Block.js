@@ -30,11 +30,11 @@ Block.prototype.render = function(projectionMatrix, MV) {
 }
 
 Block.prototype.renderGuideline = function(projectionMatrix, MV) {
-    const line = G_Line.prototype.getDrawable();
+    const line = G_Quad.prototype.getDrawable();
     const position = this.calcLocation();
     position[1] = position[1] / 2;
     MV = mult(MV, translate(position));
-    MV = mult(MV, scalem(1.0, this.yCell, 1.0));
+    MV = mult(MV, scalem(0.15, this.yCell, 0.15));
     line.draw(projectionMatrix, MV, this);
 }
 
