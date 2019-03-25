@@ -29,6 +29,15 @@ Block.prototype.render = function(projectionMatrix, MV) {
     this.drawable.draw(projectionMatrix, MV, this);
 }
 
+Block.prototype.renderGuideline = function(projectionMatrix, MV) {
+    const line = G_Line.prototype.getDrawable();
+    const position = this.calcLocation();
+    position[1] = position[1] / 2;
+    MV = mult(MV, translate(position));
+    MV = mult(MV, scalem(1.0, this.yCell, 1.0));
+    line.draw(projectionMatrix, MV, this);
+}
+
 //Færir blokk um x, y, z
 Block.prototype.move = function(x, y, z) {
     this.xCell -= x;

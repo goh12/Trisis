@@ -11,10 +11,9 @@ Triomino.prototype.update = function(DeltaTime) {
 
 
 Triomino.prototype.render = function(projectionMatrix, MV) {
-        
-
     for(let i = 0; i < this.kubbar.length; i++) {
         this.kubbar[i].render(projectionMatrix, MV);
+        this.kubbar[i].renderGuideline(projectionMatrix, MV);
     }
 }
 
