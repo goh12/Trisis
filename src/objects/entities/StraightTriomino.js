@@ -2,9 +2,8 @@ function StraightTriomino() {
     this.kubbar = createArray(3);
     this.color = vec4(Math.random(), Math.random(), Math.random(), 1);
     this.shouldMove = 1;
-    this.xFlag = true;
 
-    this.fallSpeedMultiplier = 0.5;
+    this.fallSpeedMultiplier = 1;
 
     this.setStartPosition();
 }
@@ -91,9 +90,9 @@ StraightTriomino.prototype.rotateX = function(direction) {
             break;
 
         case this.rotationStates.Z: //-----------------------------------1
-            if (this.canMoveFirst(-1, 0, -1) && this.canMoveThird(1, 0, 1)) {
-                this.moveFirst(-1, 0, -1);
-                this.moveThird(1, 0, 1);
+            if (this.canMoveFirst(1, 0, -1) && this.canMoveThird(-1, 0, 1)) {
+                this.moveFirst(1, 0, -1);
+                this.moveThird(-1, 0, 1);
                 this.currentRotationState = this.rotationStates.X;
             }
             break;
@@ -131,9 +130,9 @@ StraightTriomino.prototype.rotateY = function(direction) {
 StraightTriomino.prototype.rotateZ = function(direction) {
     switch (this.currentRotationState) {
         case this.rotationStates.X: //-----------------------------------
-            if (this.canMoveFirst(1, 0, 1) && this.canMoveThird(-1, 0, -1)) {
-                this.moveFirst(1, 0, 1);
-                this.moveThird(-1, 0, -1);
+            if (this.canMoveFirst(-1, 0, 1) && this.canMoveThird(1, 0, -1)) {
+                this.moveFirst(-1, 0, 1);
+                this.moveThird(1, 0, -1);
                 this.currentRotationState = this.rotationStates.Z;
             }
             break;

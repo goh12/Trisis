@@ -1,7 +1,4 @@
-function Triomino() {
-
-}
-
+function Triomino() { }
 
 Triomino.prototype.update = function(DeltaTime) {
     this.shouldMove -= DeltaTime * this.fallSpeedMultiplier; // should move verður < 0 á sek fresti
@@ -19,28 +16,6 @@ Triomino.prototype.render = function(projectionMatrix, MV) {
     for(let i = 0; i < this.kubbar.length; i++) {
         this.kubbar[i].render(projectionMatrix, MV);
     }
-}
-
-Triomino.prototype.rotateX = function() {
-    if (this.xFlag) {
-        this.kubbar[0].setCell(1, 0, 1);
-        this.kubbar[2].setCell(-1, 0, -1);
-        this.xFlag = false;        
-    } else {
-        this.kubbar[0].setCell(-1, 0, -1);
-        this.kubbar[2].setCell(1, 0, 1);
-        this.xFlag = true;        
-    }
-}
-
-
-Triomino.prototype.rotateY = function() {
-    
-}
-
-
-Triomino.prototype.rotateZ = function() {
-    
 }
 
 Triomino.prototype.moveX = function(val) {

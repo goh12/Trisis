@@ -46,8 +46,11 @@ Container.prototype.newTriomino = function(currTriominoBlocks) {
         }
     }
     
-    this.movingTriomino = new StraightTriomino();
-    
+    if (Math.random() < 0.5) {
+        this.movingTriomino = new StraightTriomino();
+    } else {
+        this.movingTriomino = new BentTriomino();
+    }
 }
 
 Container.prototype.checkEvents = function() {
@@ -58,9 +61,10 @@ Container.prototype.canMove = function (x, y, z) {
     
 }
 
+let shiftDownFlag = false;
+
 Container.prototype.checkFullPlane = function () {
 
-    // TODO: láta kubba fyrir ofan detta niður
     for (let y = 0; y < 20; y++) {
         
         let currHeight = 0;
@@ -69,11 +73,16 @@ Container.prototype.checkFullPlane = function () {
             
             for (let z = 0; z < 6; z++) {
                 currHeight += this.cells[x][y][z];
+                
+                if (shiftDownFlag && y+1 < 19 && typeof this.cells[x][y+1][z] !== "undefined") {
+                    this.cells[x][y][z] = this.cells[x][y+1][z];
+                }
             }
         }
 
         if (currHeight === 36) {
             this.updateScore(); // hækkum stig spilara
+            shiftDownFlag = true;
 
             for (let x = 0; x < 6; x++) {
                 for (let z = 0; z < 6; z++) {
@@ -82,8 +91,12 @@ Container.prototype.checkFullPlane = function () {
             }
 
             for (let i = this.staticBlocks.length - 1; i >= 0; i--) {
+                // fjarlægja fulla röð
                 if (this.staticBlocks[i].yCell === y) {
                     this.staticBlocks.splice(i, 1);
+                } else if (this.staticBlocks[i].yCell > y) {
+                    // færa kubba fyrir ofan niður
+                    this.staticBlocks[i].yCell -= 1;
                 }                
             }
         }

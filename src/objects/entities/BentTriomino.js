@@ -2,9 +2,8 @@ function BentTriomino() {
     this.kubbar = createArray(3);
     this.color = vec4(Math.random(), Math.random(), Math.random(), 1);
     this.shouldMove = 1;
-    this.xFlag = true;
 
-    this.fallSpeedMultiplier = 0.5;
+    this.fallSpeedMultiplier = 1;
 
     this.setStartPosition();
 }
@@ -25,9 +24,9 @@ BentTriomino.prototype.rotationStates = {
  */
 BentTriomino.prototype.setStartPosition = function() {
     this.currentRotationState = this.rotationStates.ZX;
-    this.kubbar[0] = new Block(2, 19, 3);
-    this.kubbar[1] = new Block(2, 19, 2);
-    this.kubbar[2] = new Block(3, 19, 2);
+    this.kubbar[0] = new Block(2, 19, 3, this.color);
+    this.kubbar[1] = new Block(2, 19, 2, this.color);
+    this.kubbar[2] = new Block(3, 19, 2, this.color);
 }
 
 
@@ -541,7 +540,6 @@ BentTriomino.prototype.rotateZ = function(direction) {
 
         case this.rotationStates.Yx: //-----------------------------------
             if (direction) {
-                console.log("Here");
                 if (this.canMoveFirst(1, 1, 0) && this.canMoveThird(-1, 1, 0)) {
                     this.moveFirst(1, 1, 0); this.moveThird(-1, 1, 0);
                     this.currentRotationState = this.rotationStates.yx;

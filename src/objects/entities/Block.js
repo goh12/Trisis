@@ -75,12 +75,3 @@ Block.prototype.getZCell = function () {
 Block.prototype.getCells = function() {
     return vec3(this.xCell, this.yCell, this.zCell);
 }
- 
-// TODO: taka út testsuite fyrir production
-function TestSuite() {
-    this.block = new Block();
-}
-
-TestSuite.prototype.render = function(mv) {
-    this.block.render(mv);
-}
