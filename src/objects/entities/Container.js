@@ -73,10 +73,6 @@ Container.prototype.checkFullPlane = function () {
             
             for (let z = 0; z < 6; z++) {
                 currHeight += this.cells[x][y][z];
-                
-                if (shiftDownFlag && y+1 < 19 && typeof this.cells[x][y+1][z] !== "undefined") {
-                    this.cells[x][y][z] = this.cells[x][y+1][z];
-                }
             }
         }
 
@@ -100,7 +96,17 @@ Container.prototype.checkFullPlane = function () {
                 }                
             }
         }
+        
+        // færum kubba fyrir ofan niður í cell fylki
+        if (shiftDownFlag && y + 1 < 19) {
+            for (let x = 0; x < 6; x++) {
+                for (let z = 0; z < 6; z++) {
+                    this.cells[x][y][z] = this.cells[x][y+1][z];
+                }
+            }
+        }
     }
+    shiftDownFlag = false;
     
 }
 
