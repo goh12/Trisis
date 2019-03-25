@@ -67,13 +67,3 @@ G_Quad.prototype.wireframe = [
 
 G_Quad.prototype.wireframeArrayBuffer =
     fg_unpackIndices(G_Quad.prototype.wireframe, G_Quad.prototype.vertices, true);
-
-
-function TestSuite() {
-    this.quad = new G_Quad(FG_GraphicsObject.prototype.type.ARRAY_BUFFER);
-}
-
-TestSuite.prototype.draw = function(mv) {
-    this.quad.prepare();
-    this.quad.draw(mv, {})
-}
