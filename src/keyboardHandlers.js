@@ -29,10 +29,10 @@ function attachKeyboardHandlers() {
             case 83:	// s 
                 CONTAINER.movingTriomino.rotateY(true);
                 break;
-            case 81:	// q 
+            case 68:	// d 
                 CONTAINER.movingTriomino.rotateZ(true);
                 break;
-            case 87:	// w 
+            case 67:	// c 
                 CONTAINER.movingTriomino.rotateZ(false);
                 break;
         }

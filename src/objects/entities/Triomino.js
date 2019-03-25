@@ -1,29 +1,5 @@
 function Triomino() {
-    /*
-    this.kubbar = createArray(3);
-    this.color = vec4(Math.random(), Math.random(), Math.random(), 1);
-    this.shouldMove = 1;
-    this.xFlag = true;
 
-    this.fallSpeedMultiplier = 1;
-
-    // miðju kubbur á random stað
-    let xCell = Math.floor(Math.random() * 4) + 1;
-    let yCell = 19; // TODO: á kubbur að birtast í hæð 19 ? 
-    let zCell = Math.floor(Math.random() * 4) + 1;
-    this.kubbar[1] = (new Block(xCell, yCell, zCell, this.color));
-
-    for (let i = 0; i < this.kubbar.length; i++) {
-        
-        if (i === 1) {
-            continue;
-        }
-
-        // TODO: kubbur snýr alltaf eins á x/z-ás. Breyta því?
-        xCell = i === 0 ? this.kubbar[1].getXCell() - 1 : this.kubbar[1].getXCell() + 1;
-        this.kubbar[i] = (new Block(xCell, yCell, zCell, this.color));        
-    }
-    */
 }
 
 
