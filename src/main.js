@@ -56,7 +56,7 @@ function init() {
     CONTAINER = new Container();
     //testSuite = new TestSuite();
     
-    attachMouseHandlers(canvas, 50, 0, 20, 30);
+    attachMouseHandlers(canvas, 0, 0, 20, 20);
     attachKeyboardHandlers()
     render(0);
 }
@@ -70,11 +70,12 @@ function render(delta) {
     GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
     
     const PROJECTION = perspective(60, 4/3, 0.1, 500.0);
-    const CAMERA = lookAt(vec3(0, 0.0, zView), vec3(0.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0));
+    const CAMERA = lookAt(vec3(0, 0, zView), vec3(0, 0, 0), vec3(0.0, 1.0, 0.0));
     const projectionMatrix = mult(PROJECTION, CAMERA);
     GL.uniformMatrix4fv(projectionMatrixLoc, false, flatten(projectionMatrix));
 
     let MV = mult(rotateX(spinX), rotateY(spinY));
+    MV = mult(MV, translate(negate(CONTAINER.getLookAt())));
     MV = mult(MV, translate(-3.0, -10, -3,0));
     
     CONTAINER.render(projectionMatrix, MV);

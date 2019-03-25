@@ -6,7 +6,19 @@ function Container() {
 
 
     this.drawable = new G_Container();
+    this.newTriomino();
 }
+
+Container.prototype.getLookAt = function() {
+    const mt = this.movingTriomino;
+    return vec3(0, mt.kubbar[1].getYCell() - 10, 0);
+}
+
+Container.prototype.getViewPoint = function() {
+    const mt = this.movingTriomino;
+    return vec3(0, mt.kubbar[1].getYCell() - 10, zView);
+}
+
 
 Container.prototype.update = function(DeltaTime) {
 

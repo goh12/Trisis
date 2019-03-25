@@ -21,6 +21,7 @@ for(let y = 0; y <= 20; y++) {
 }
 */
 
+/*
 for(let y = 0; y <= 20; y++) {
     __containerVertices.push(vec3(0.0, y, 0.0));
     __containerVertices.push(vec3(6.0, y, 0.0));
@@ -31,9 +32,9 @@ for(let y = 0; y <= 20; y++) {
     __containerVertices.push(vec3(0.0, y, 6.0));
     __containerVertices.push(vec3(6.0, y, 6.0));
 }
-
-for(let i = 1; i <= 5; i++) {
-    for(let j = 1; j <= 5; j++) {
+*/
+for(let i = 0; i <= 6; i++) {
+    for(let j = 0; j <= 6; j++) {
         __containerVertices.push(vec3(i, 0.0, j));
         __containerVertices.push(vec3(i, 20.0, j));
     }
