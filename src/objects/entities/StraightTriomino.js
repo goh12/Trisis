@@ -24,7 +24,7 @@ StraightTriomino.prototype.setStartPosition = function() {
     this.currentRotationState = this.rotationStates.X;
     // miðju kubbur á random stað
     let xCell = Math.floor(Math.random() * 4) + 1;
-    let yCell = 19; // TODO: á kubbur að birtast í hæð 19 ? 
+    let yCell = 19; 
     let zCell = Math.floor(Math.random() * 4) + 1;
     this.kubbar[1] = (new Block(xCell, yCell, zCell, this.color));
 
@@ -34,7 +34,6 @@ StraightTriomino.prototype.setStartPosition = function() {
             continue;
         }
 
-        // TODO: kubbur snýr alltaf eins á x/z-ás. Breyta því?
         xCell = i === 0 ? this.kubbar[1].getXCell() - 1 : this.kubbar[1].getXCell() + 1;
         this.kubbar[i] = (new Block(xCell, yCell, zCell, this.color));        
     }

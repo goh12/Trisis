@@ -4,7 +4,6 @@ function Container() {
     this.staticBlocks = [];
     this.movingTriomino = null;
 
-
     this.drawable = new G_Container();
     this.newTriomino();
 }

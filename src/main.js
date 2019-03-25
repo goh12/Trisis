@@ -5,9 +5,6 @@ let canvas = null;
 
 let DeltaTime = 0;
 
-let watertank = null;
-let flock = null;
-
 let projectionMatrixLoc = null;
 projectionMatrix = null;
 
@@ -19,7 +16,6 @@ let lightSpecular = vec4( 1.0, 1.0, 1.0, 1.0 );
 let shininess = 80.0;
 
 let CONTAINER = null;
-let testSuite = null;
 let playerScore = 0;
 
 function init() {
@@ -54,7 +50,6 @@ function init() {
     GL.enable(GL.BLEND);
 
     CONTAINER = new Container();
-    //testSuite = new TestSuite();
     
     attachMouseHandlers(canvas, 45, 0, 20, 20);
     attachKeyboardHandlers()
@@ -79,9 +74,7 @@ function render(delta) {
     MV = mult(MV, translate(-3.0, -10, -3,0));
     
     CONTAINER.render(projectionMatrix, MV);
-    //testSuite.render(MV);
 
-    // TODO: færa update úr render?
     CONTAINER.update(DeltaTime);
 
     requestAnimationFrame(render);

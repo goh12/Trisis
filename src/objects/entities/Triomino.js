@@ -45,7 +45,6 @@ Triomino.prototype.canMove = function(x, y, z) {
     let allClear = this.kubbar[0].canMove(x, y, z) && this.kubbar[1].canMove(x, y, z) 
                     && this.kubbar[2].canMove(x, y, z);
     
-    // TODO: laga rotation skorðu
     if (allClear) {
         return allClear;
     }
@@ -63,7 +62,6 @@ Triomino.prototype.canMoveDown = function() {
     let allClear = this.kubbar[0].canMove(0, -1, 0) && this.kubbar[1].canMove(0, -1, 0) 
                     && this.kubbar[2].canMove(0, -1, 0);
     
-    // TODO: laga rotation skorðu
     if (this.kubbar[1].getYCell() > 0 && allClear) {
         return allClear;
     }

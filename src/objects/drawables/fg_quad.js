@@ -68,7 +68,6 @@ G_Quad.prototype.wireframe = [
 G_Quad.prototype.wireframeArrayBuffer =
     fg_unpackIndices(G_Quad.prototype.wireframe, G_Quad.prototype.vertices, true);
 
-
 G_Quad.prototype._drawable = null;
 G_Quad.prototype.getDrawable = function() {
     if (G_Quad.prototype._drawable == null) {
