@@ -1,4 +1,6 @@
-function Triomino() { }
+function Triomino() { 
+    this.fallSpeedMultiplier = 2;
+}
 
 Triomino.prototype.update = function(DeltaTime) {
     this.shouldMove -= DeltaTime * this.fallSpeedMultiplier; // should move verður < 0 á sek fresti

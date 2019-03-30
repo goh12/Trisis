@@ -2,9 +2,6 @@ function StraightTriomino() {
     this.kubbar = createArray(3);
     this.color = vec4(Math.random(), Math.random(), Math.random(), 1);
     this.shouldMove = 1;
-
-    this.fallSpeedMultiplier = 1;
-
     this.setStartPosition();
 }
 
